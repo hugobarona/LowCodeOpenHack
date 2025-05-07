@@ -10,7 +10,7 @@ on:
     types: [created]
 
 env:
-  solution_name: Prioritz
+  solution_name: LowCodeOpenHack_v2
   solution_source_folder: solutions
   solution_outbound_folder: out/solutions
   solution_release_folder: out/release
