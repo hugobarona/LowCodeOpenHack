@@ -23,7 +23,7 @@ jobs:
     - name: Checkout Code
       uses: actions/checkout@v4
       with:
-        lfs: true
+        lfs: false
 
     # Pack the managed solution from the source folder
     - name: Pack Managed Solution
