@@ -1,0 +1,175 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_teams": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "crdc7_sharedteams_614c2"
+        },
+        "api": {
+          "name": "shared_teams"
+        }
+      },
+      "shared_sharepointonline": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "crdc7_sharedsharepointonline_673e0"
+        },
+        "api": {
+          "name": "shared_sharepointonline"
+        }
+      },
+      "shared_office365": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "crdc7_sharedoffice365_f3607"
+        },
+        "api": {
+          "name": "shared_office365"
+        }
+      },
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "crdc7_sharedcommondataserviceforapps_b5b21"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_row_is_added,_modified_or_deleted": {
+          "metadata": {
+            "operationMetadataId": "ea04f4f5-027d-4c3f-9bfd-9dc54798f94f"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 1,
+              "subscriptionRequest/entityname": "crdc7_incidentreport",
+              "subscriptionRequest/scope": 4
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "Switch": {
+          "runAfter": {},
+          "cases": {
+            "Case_Safety": {
+              "case": "Safety",
+              "actions": {
+                "Post_message_in_a_chat_or_channel": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "e1f80b6e-4759-4f5a-b382-51bacb102d1b"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_teams",
+                      "operationId": "PostMessageToConversation",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_teams"
+                    },
+                    "parameters": {
+                      "poster": "Flow bot",
+                      "location": "Channel",
+                      "body/recipient/groupId": "e4e55340-dbbe-43ec-bd01-1c9611ddddec",
+                      "body/recipient/channelId": "19:1kzeq2iU-MLwUr-CyGgEPWLVcbpy2ygTv5x77ibpEu01@thread.tacv2",
+                      "body/messageBody": "<p class=\"editor-paragraph\">New Safety issue</p><br><p class=\"editor-paragraph\">Description: @{triggerOutputs()?['body/crdc7_description']}</p><p class=\"editor-paragraph\">Incident Type: @{triggerOutputs()?['body/crdc7_incidenttype']}</p><p class=\"editor-paragraph\">Incident ID: @{triggerOutputs()?['body/crdc7_incidentid']}</p>"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                }
+              }
+            },
+            "Case_IT": {
+              "case": "IT",
+              "actions": {
+                "Create_item": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "e20a150b-bcf4-4f6f-bdd2-10baa6a7edfd"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_sharepointonline",
+                      "operationId": "PostItem",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                    },
+                    "parameters": {
+                      "dataset": "https://hbarona.sharepoint.com/sites/training",
+                      "table": "d537e45f-642d-48bd-97e1-7d74ac4a7045",
+                      "item/Title": "@triggerOutputs()?['body/crdc7_incidentid']",
+                      "item/IncidentType": "@triggerOutputs()?['body/crdc7_incidenttype']",
+                      "item/Description": "@triggerOutputs()?['body/crdc7_description']"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                }
+              }
+            },
+            "Case_Machine_Failure": {
+              "case": "Machine Failure",
+              "actions": {
+                "Send_an_email_(V2)": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "780a87f5-1a8d-48bb-b800-31fc9a595d44"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_office365",
+                      "operationId": "SendEmailV2",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
+                    },
+                    "parameters": {
+                      "emailMessage/To": "training@cloudnitio.com",
+                      "emailMessage/Subject": "Machine failure - @{triggerOutputs()?['body/crdc7_incidentid']}",
+                      "emailMessage/Body": "<p class=\"editor-paragraph\">New machine failure<br><br>@{triggerOutputs()?['body/crdc7_incidentid']}<br>@{triggerOutputs()?['body/crdc7_description']}<br>@{triggerOutputs()?['body/crdc7_incidenttype']}</p>",
+                      "emailMessage/Importance": "Normal"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "actions": {}
+          },
+          "expression": "@triggerOutputs()?['body/_crdc7_incidenttype_label']",
+          "metadata": {
+            "operationMetadataId": "6c998c80-907f-4575-8b42-945bb111d4cd"
+          },
+          "type": "Switch"
+        }
+      },
+      "outputs": {}
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}
