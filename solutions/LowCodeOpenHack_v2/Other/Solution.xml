@@ -84,23 +84,6 @@
       <RootComponent type="29" id="{533eb6a7-2026-f011-8c4d-6045bd0a2104}" behavior="0" />
       <RootComponent type="300" schemaName="crdc7_incidentsapp_a13f2" behavior="0" />
     </RootComponents>
-    <MissingDependencies>
-      <MissingDependency>
-        <Required type="connectionreference" displayName="crdc7_sharedcommondataserviceforapps_b5b21" solution="Active" id.connectionreferencelogicalname="crdc7_sharedcommondataserviceforapps_b5b21" />
-        <Dependent type="29" displayName="IncidentNotificationFlow" id="{533eb6a7-2026-f011-8c4d-6045bd0a2104}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="connectionreference" displayName="crdc7_sharedoffice365_f3607" solution="Active" id.connectionreferencelogicalname="crdc7_sharedoffice365_f3607" />
-        <Dependent type="29" displayName="IncidentNotificationFlow" id="{533eb6a7-2026-f011-8c4d-6045bd0a2104}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="connectionreference" displayName="crdc7_sharedsharepointonline_673e0" solution="Active" id.connectionreferencelogicalname="crdc7_sharedsharepointonline_673e0" />
-        <Dependent type="29" displayName="IncidentNotificationFlow" id="{533eb6a7-2026-f011-8c4d-6045bd0a2104}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="connectionreference" displayName="crdc7_sharedteams_614c2" solution="Active" id.connectionreferencelogicalname="crdc7_sharedteams_614c2" />
-        <Dependent type="29" displayName="IncidentNotificationFlow" id="{533eb6a7-2026-f011-8c4d-6045bd0a2104}" />
-      </MissingDependency>
-    </MissingDependencies>
+    <MissingDependencies />
   </SolutionManifest>
 </ImportExportXml>
