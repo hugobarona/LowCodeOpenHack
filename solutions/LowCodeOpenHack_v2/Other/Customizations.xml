@@ -25,6 +25,40 @@
   <CustomControls />
   <EntityDataProviders />
   <CanvasApps />
+  <connectionreferences>
+    <connectionreference connectionreferencelogicalname="crdc7_sharedcommondataserviceforapps_b5b21">
+      <connectionreferencedisplayname>Microsoft Dataverse LowCodeOpenHack_v1-b5b21</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <promptingbehavior>0</promptingbehavior>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="crdc7_sharedoffice365_f3607">
+      <connectionreferencedisplayname>Office 365 Outlook LowCodeOpenHack_v1-f3607</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_office365</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <promptingbehavior>0</promptingbehavior>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="crdc7_sharedsharepointonline_673e0">
+      <connectionreferencedisplayname>SharePoint LowCodeOpenHack_v1-673e0</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_sharepointonline</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <promptingbehavior>0</promptingbehavior>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="crdc7_sharedteams_614c2">
+      <connectionreferencedisplayname>Microsoft Teams LowCodeOpenHack_v1-614c2</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_teams</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <promptingbehavior>0</promptingbehavior>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+  </connectionreferences>
   <Languages>
     <Language>1033</Language>
   </Languages>
