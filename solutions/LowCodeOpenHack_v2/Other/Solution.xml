@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ImportExportXml version="9.2.25044.160" SolutionPackageVersion="9.2" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" OrganizationVersion="9.2.25044.160" OrganizationSchemaType="Standard" CRMServerServiceabilityVersion="9.2.25044.00164">
+<ImportExportXml version="9.2.25044.160" SolutionPackageVersion="9.2" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" OrganizationVersion="9.2.25044.160" OrganizationSchemaType="Standard" CRMServerServiceabilityVersion="9.2.25044.00170">
   <SolutionManifest>
     <UniqueName>LowCodeOpenHack_v2</UniqueName>
     <LocalizedNames>
       <LocalizedName description="LowCodeOpenHack_v2" languagecode="1033" />
     </LocalizedNames>
     <Descriptions />
-    <Version>2.0.0.1</Version>
+    <Version>2.0.0.2</Version>
     <Managed>2</Managed>
     <Publisher>
       <UniqueName>DefaultPublisherorg3d497254</UniqueName>
